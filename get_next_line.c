@@ -6,7 +6,7 @@
 /*   By: hadufer <hadufer@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/20 12:52:10 by hadufer           #+#    #+#             */
-/*   Updated: 2021/10/20 18:46:17 by hadufer          ###   ########.fr       */
+/*   Updated: 2021/10/21 18:06:18 by hadufer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,9 @@ char *get_next_line(int fd)
 	char		*tmp2;
 	int			status;
 
-	tmp = malloc(sizeof(char) * (BUFFER_SIZE));
-	*tmp = 0;
+	// FIRST READ TO TEST FD
+	tmp = malloc(sizeof(char) * (BUFFER_SIZE + 1));
+	tmp[BUFFER_SIZE] = 0;
 	tmp2 = NULL;
 	if (!tmp)
 		return (NULL);
@@ -34,23 +35,39 @@ char *get_next_line(int fd)
 	}
 	while (!ft_strchr(tmp, '\n') && status > 0)
 	{
-		if (*tmp == '\n')
-			break ;
 		if (buf)
 		{
 			tmp2 = buf;
-			free(buf);
+			buf = ft_strjoin(tmp2, tmp);
+			free(tmp2);
 		}
-		buf = ft_strjoin(tmp2, tmp);
+		else
+			buf = ft_strjoin(tmp2, tmp);
 		status = read(fd, tmp, BUFFER_SIZE);
+		tmp[status] = 0;
 	}
+	if (status != 0)
+	{
+		tmp2 = buf;
+		buf = ft_strjoin(buf, tmp);
+		free(tmp2);
+		free(tmp);
+		tmp = NULL;
+	}
+	if (status == 0 && !ft_strchr(buf, '\n'))
+	{
+		free(tmp);
+		tmp = ft_strndup(buf, ft_strlen(buf));
+		free(buf);
+		buf = NULL;
+		return (tmp);
+	}
+	free(tmp);
+	tmp = ft_strndup(buf, (ft_strlen(buf) - ft_strlen(ft_strchr(buf, '\n') + 1)));
+	//
+	tmp = ft_strndup(buf, (ft_strlen(buf) - ft_strlen(ft_strchr(buf, '\n'))));
 	tmp2 = buf;
-	buf = ft_strjoin(buf, tmp);
-	free(tmp2);
-	tmp2 = buf;
-	// A revoir
-	buf = ft_strndup(ft_strchr(buf, '\n'), ft_strlen(buf) - ft_strlen(ft_strchr(buf, '\n')) / sizeof(char));
-	tmp = ft_strndup(buf, ft_strlen(buf) + (ft_strlen(buf) - (buf - ft_strchr(buf, '\n')) / sizeof(char)));
+	buf = ft_strndup(ft_strchr(buf, '\n') + 1, ft_strlen(ft_strchr(buf, '\n') + 1));
 	free(tmp2);
 	return (tmp);
 }
