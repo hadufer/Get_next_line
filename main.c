@@ -6,7 +6,7 @@
 /*   By: hadufer <hadufer@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/20 12:52:05 by hadufer           #+#    #+#             */
-/*   Updated: 2021/10/21 17:56:13 by hadufer          ###   ########.fr       */
+/*   Updated: 2021/10/22 11:08:41 by hadufer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	main()
 	int	fd = 12;
 	char	*test = NULL;
 
-	fd = open("gnlTester/files/alternate_line_nl_no_nl", O_RDONLY);
+	fd = open("gnlTester/files/multiple_line_no_nl", O_RDONLY);
 	test = get_next_line(fd);
 	while ( test )
 	{

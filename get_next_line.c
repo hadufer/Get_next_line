@@ -6,7 +6,7 @@
 /*   By: hadufer <hadufer@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/20 12:52:10 by hadufer           #+#    #+#             */
-/*   Updated: 2021/10/21 18:06:18 by hadufer          ###   ########.fr       */
+/*   Updated: 2021/10/22 14:23:17 by hadufer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,7 @@ char *get_next_line(int fd)
 	int			status;
 
 	// FIRST READ TO TEST FD
-	tmp = malloc(sizeof(char) * (BUFFER_SIZE + 1));
-	tmp[BUFFER_SIZE] = 0;
+	tmp = ft_calloc(BUFFER_SIZE + 1, sizeof(char));
 	tmp2 = NULL;
 	if (!tmp)
 		return (NULL);
@@ -64,8 +63,6 @@ char *get_next_line(int fd)
 	}
 	free(tmp);
 	tmp = ft_strndup(buf, (ft_strlen(buf) - ft_strlen(ft_strchr(buf, '\n') + 1)));
-	//
-	tmp = ft_strndup(buf, (ft_strlen(buf) - ft_strlen(ft_strchr(buf, '\n'))));
 	tmp2 = buf;
 	buf = ft_strndup(ft_strchr(buf, '\n') + 1, ft_strlen(ft_strchr(buf, '\n') + 1));
 	free(tmp2);

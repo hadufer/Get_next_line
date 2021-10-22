@@ -6,13 +6,13 @@
 /*   By: hadufer <hadufer@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/20 12:52:08 by hadufer           #+#    #+#             */
-/*   Updated: 2021/10/21 16:45:52 by hadufer          ###   ########.fr       */
+/*   Updated: 2021/10/22 12:18:55 by hadufer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef GET_NEXT_LINE
 # define GET_NEXT_LINE
-# define BUFFER_SIZE 42
+// # define BUFFER_SIZE 1
 # include <stddef.h>
 size_t	ft_strlen(char *s);
 char	*ft_strchr(char *s, int c);

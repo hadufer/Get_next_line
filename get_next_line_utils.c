@@ -6,13 +6,29 @@
 /*   By: hadufer <hadufer@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/20 12:52:14 by hadufer           #+#    #+#             */
-/*   Updated: 2021/10/21 15:27:19 by hadufer          ###   ########.fr       */
+/*   Updated: 2021/10/22 12:35:18 by hadufer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 #include <stdlib.h>
 
+void	*ft_calloc(size_t nmemb, size_t memb)
+{
+	void	*ret;
+	size_t	i;
+
+	i = 0;
+	ret = malloc(sizeof(memb) * nmemb);
+	if (!ret)
+		return (NULL);
+	while (i < (memb * nmemb))
+	{
+		*(unsigned char *)(ret + i) = (unsigned char)0;
+		i++;
+	}
+	return (ret);
+}
 size_t	ft_strlen(char *s)
 {
 	size_t	i;
@@ -48,7 +64,8 @@ char	*ft_strjoin(char *s1, char *s2)
 	char	*ret;
 	size_t	i;
 
-	ret = malloc(sizeof(char) * (ft_strlen(s1) + ft_strlen(s2) + 1));
+	// ret = malloc(sizeof(char) * (ft_strlen(s1) + ft_strlen(s2) + 1));
+	ret = ft_calloc(ft_strlen(s1) + ft_strlen(s2) + 1, sizeof(char));
 	if (!ret)
 		return (NULL);
 	i = 0;
@@ -76,7 +93,8 @@ char	*ft_strndup(char	*str, size_t n)
 	i = 0;
 	if (!str || n == 0)
 		return (NULL);
-	ret = malloc(sizeof(char) * (ft_strlen(str) + 1));
+	// ret = malloc(sizeof(char) * (ft_strlen(str) + 1));
+	ret = ft_calloc(ft_strlen(str) + 1, sizeof(char));
 	if (!ret)
 		return (NULL);
 	while (str[i] && i < n)
