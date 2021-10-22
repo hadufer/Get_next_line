@@ -6,7 +6,7 @@
 /*   By: hadufer <hadufer@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/20 12:52:14 by hadufer           #+#    #+#             */
-/*   Updated: 2021/10/22 12:35:18 by hadufer          ###   ########.fr       */
+/*   Updated: 2021/10/22 15:12:58 by hadufer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ void	*ft_calloc(size_t nmemb, size_t memb)
 	}
 	return (ret);
 }
+
 size_t	ft_strlen(char *s)
 {
 	size_t	i;
@@ -64,7 +65,6 @@ char	*ft_strjoin(char *s1, char *s2)
 	char	*ret;
 	size_t	i;
 
-	// ret = malloc(sizeof(char) * (ft_strlen(s1) + ft_strlen(s2) + 1));
 	ret = ft_calloc(ft_strlen(s1) + ft_strlen(s2) + 1, sizeof(char));
 	if (!ret)
 		return (NULL);
@@ -93,7 +93,6 @@ char	*ft_strndup(char	*str, size_t n)
 	i = 0;
 	if (!str || n == 0)
 		return (NULL);
-	// ret = malloc(sizeof(char) * (ft_strlen(str) + 1));
 	ret = ft_calloc(ft_strlen(str) + 1, sizeof(char));
 	if (!ret)
 		return (NULL);
